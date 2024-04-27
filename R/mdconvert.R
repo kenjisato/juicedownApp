@@ -152,7 +152,7 @@ mdconvertServer <- function(id) {
     # Download Button
     output$downloadData <- downloadHandler(
       filename = function() {
-        paste0("moodle-page-", format(Sys.time(), "%Y%m%d-%H%M%S"), ".zip")
+        paste0("juicedown-pack-", format(Sys.time(), "%Y%m%d-%H%M%S"), ".zip")
       },
       content = function(file) {
         writeLines(r$html, .html_file)
