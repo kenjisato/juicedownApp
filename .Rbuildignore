@@ -1,0 +1,10 @@
+^renv$
+^renv\.lock$
+^juicedownApp\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^app\.R$
+^rsconnect$
+^.Rprofile$
+^.rscignore$
+^.github$
