@@ -11,3 +11,6 @@
 #' @importFrom stringr str_split_1
 ## usethis namespace: end
 NULL
+
+
+.packageName <- "juicedownApp"
