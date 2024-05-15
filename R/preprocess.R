@@ -15,9 +15,9 @@ preprocess_md <- function(input, allow_r) {
   
   # Special Commands
   md <- md |>
-    stringr::str_replace('\\{%\\s*YouTube\\((.*)\\)\\s*%\\}', 
+    stringr::str_replace('\\{%\\s*YouTube\\(((\'.*\')|(\".*\"))\\)\\s*%\\}', 
                          '\n```{r}\nincludeYT(\\1)\n```\n') |>
-    stringr::str_replace('\\{%\\s*Audio\\((.*)\\)\\s*%\\}', 
+    stringr::str_replace('\\{%\\s*Audio\\(((\'.*\')|(\".*\"))\\)\\s*%\\}', 
                          '\n```{r}\nincludeAudio(\\1)\n```\n')
   
   # Options
