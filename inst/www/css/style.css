@@ -12,6 +12,10 @@
   height: calc(100vh - 200px);
 }
 
+#md2html-preview > article, #md2html-preview > div {
+  margin: 0;
+}
+
 code.md {
   background-color: var(--bs-body-bg);
 }
