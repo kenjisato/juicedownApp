@@ -1,2 +1,2 @@
 pkgload::load_all(".")
-up()
+up(allow_r = FALSE)

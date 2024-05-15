@@ -1,0 +1,59 @@
+---
+knit: (function(input, ...) {
+    juicedown::convert(file = input, clip = FALSE)
+  })
+---
+
+# Notes
+
+```{r setup, include = FALSE}
+library(juicedown)
+```
+
+This app provides an interface for R package [juicedown](https://CRAN.R-project.org/package=juicedown). If you require full control, please use [juicedown](https://CRAN.R-project.org/package=juicedown) directly.
+
+The version of the app hosted on Shinyapps.io has further restrictions on executing arbitrary R code due to security reasons. This limitation is in place to prevent the risk of users running malicious code. If you prefer the user-friendly interface, run [juicedownApp](https://github.com/kenjisato/juicedownApp) locally. See the installation section below.
+
+In restricted mode, you still have access to a few app-only commands.
+
+## Special Commands
+
+### YouTube Video
+
+```markdown
+{% YouTube("https://youtu.be/videoid") %}
+```
+
+```{r, results='asis', echo=FALSE}
+includeYT("https://youtu.be/L1Sks-inb9M")
+```
+
+
+
+### Audio File
+
+```markdown
+{% Audio("https://example.com") %}
+```
+
+```{r}
+includeAudio("https://omunet-my.sharepoint.com/:u:/g/personal/s21413e_omu_ac_jp/EcPrgs7iZKNAm8yGWK_vGE0BEc_gfAfUToP1i7wTe01vSA?e=ajLbXP&download=1")
+```
+
+
+## Install juicedown and juicedownApp
+
+To install:
+
+```r
+install.packages("remotes")
+remotes::install_github("kenjisato/juicedownApp")
+```
+
+To run the app on the local server: 
+
+```r
+juicedownApp::up()
+```
+
+

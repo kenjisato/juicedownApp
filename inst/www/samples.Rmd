@@ -1,12 +1,20 @@
 ---
 knit: (function(input, ...) {
-    omuecon::moodle_html(file = input, clip = FALSE)
+    juicedown::convert(file = input, clip = FALSE)
   })
 ---
 
-# Special functions
+# Notes
 
-## YouTube Video
+This app provides an interface for R package [juicedown](https://CRAN.R-project.org/package=juicedown). If you require full control, please use [juicedown](https://CRAN.R-project.org/package=juicedown) directly.
+
+
+
+## juicedown functions
+
+[juicedown](https://CRAN.R-project.org/package=juicedown) has a few convenience functions.
+
+### YouTube Video
 
 ````markdown
 `r ''````{r}
@@ -20,7 +28,7 @@ includeYT("https://youtu.be/L1Sks-inb9M")
 
 
 
-## Audio File
+### Audio File
 
 ````markdown
 `r ''````{r}
@@ -33,7 +41,7 @@ includeAudio("https://omunet-my.sharepoint.com/:u:/g/personal/s21413e_omu_ac_jp/
 ```
 
 
-## Quiz and Solution 
+### Quiz and Solution 
 
 ````markdown
 `r ''````{r}
