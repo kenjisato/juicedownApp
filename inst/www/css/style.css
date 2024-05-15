@@ -1,62 +1,30 @@
-.shiny-notification {
-  width: 200px;
-  text-align: center;
-  font-size: 250%;
-  position: fixed;
-  top: calc(50%);
-  left: calc(50% - 100px);
-}
-
+/* General Styles */
 .ta .shiny-input-container {
   width: 100%;
+  height: 100%;
+  margin-bottom: 0;
 }
 
-.ta .form-control {
-  height: 580px;
+#left-panel .ta .form-control {
   font-family: monospace, serif;
+  resize: vertical;
+  width: 100%;
+  height: calc(100vh - 200px);
 }
 
-#options-container {
-  margin: 20px;
+#md2html-preview > article, #md2html-preview > div {
+  margin: 0;
 }
 
-#md2html-preview {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 3;
-  margin: 18px 0px 5px;
-  height: 585px;
-  overflow-y: scroll;
+code.md {
+  background-color: var(--bs-body-bg);
 }
 
-#md2html-default_md, #md2html-default_css {
-  text-align: center;
+table.markdown {
+  text-indent: -4px;
 }
 
-#md2html-convert {
-  float: left;
-  color: #fff;
-  background-color: DodgerBlue;
-}
-
-#md2html-downloadData {
-  float: right;
-}
-
-#md2html-clip {
-  margin-left: 5px;
-  float: left;
-}
-
-#right-panel {
-  margin: auto 27px;
-}
-
-#right-panel hr {
-  margin: 7px auto;
-  border-color: #ddd;
-}
-
+/* Floating Labels */
 #md2html-type_css-label {
   float: left;
 }
@@ -66,12 +34,17 @@
   padding-left: 20px;
 }
 
+/* Media Query */
 @media screen and (max-width: 768px) {
-	.ta .form-control {
-		height: 300px;
-	}
+  .ta .form-control {
+    height: 300px;
+  }
 
-	#md2html-default_md, #md2html-default_css {
-	  margin-bottom: 48px;
-	}
+  #left-panel .card {
+    height: 350px;
+  }
+
+  #right-panel .card {
+    height: 100%;
+  }
 }

@@ -4,9 +4,12 @@
 \alias{up}
 \title{Launch shiny app}
 \usage{
-up(...)
+up(allow_r = TRUE, ...)
 }
 \arguments{
+\item{allow_r}{logical. If set to FALSE, code chunks are converted into a
+verbatim code block during the conversion process.}
+
 \item{...}{Not used yet.}
 }
 \value{

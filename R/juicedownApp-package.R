@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 #' @import shiny
+#' @import bslib
 #'
 # suppress R CMD check note
 #' @importFrom pkgload load_all
@@ -11,6 +12,3 @@
 #' @importFrom stringr str_split_1
 ## usethis namespace: end
 NULL
-
-
-.packageName <- "juicedownApp"
