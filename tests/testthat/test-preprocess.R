@@ -30,12 +30,13 @@ test_that("app command works (YouTube)", {
 
 test_that("tweak options", {
   text <- c("hello")
-  input <- list(
+  session <- list()
+  session$input <- list(
     tweak_h2 = TRUE,
     tweak_fn = TRUE
   )
   expect_equal(
-    process_options(text, input),
+    process_options(text, session, download = FALSE),
     c(
       text,
       "```{r}",
@@ -45,12 +46,12 @@ test_that("tweak options", {
     )
   )
 
-  input <- list(
+  session$input <- list(
     tweak_h2 = TRUE,
     tweak_fn = FALSE
   )
   expect_equal(
-    process_options(text, input),
+    process_options(text, session, download = FALSE),
     c(
       text,
       "```{r}",
@@ -60,12 +61,12 @@ test_that("tweak options", {
     )
   )
 
-  input <- list(
+  session$input <- list(
     tweak_h2 = FALSE,
     tweak_fn = TRUE
   )
   expect_equal(
-    process_options(text, input),
+    process_options(text, session, download = FALSE),
     c(
       text,
       "```{r}",
@@ -75,12 +76,12 @@ test_that("tweak options", {
     )
   )
 
-  input <- list(
+  session$input <- list(
     tweak_h2 = FALSE,
     tweak_fn = FALSE
   )
   expect_equal(
-    process_options(text, input),
+    process_options(text, session, download = FALSE),
     c(text)
   )
 })

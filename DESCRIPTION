@@ -1,6 +1,6 @@
 Package: juicedownApp
 Title: Small Shiny App for CMS Pages 
-Version: 0.0.1.9000
+Version: 0.0.2.9000
 Authors@R: 
     person("Kenji", "Sato", , "kenji@kenjisato.jp", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0009-0000-4520-2560"))
