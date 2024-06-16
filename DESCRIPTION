@@ -18,6 +18,7 @@ Imports:
     shiny,
     shinyAce,
     shinyalert,
+    shinycssloaders,
     shinyStorePlus,
     stringr,
     yaml,

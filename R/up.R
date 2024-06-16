@@ -12,7 +12,7 @@ link_juicedown <- tags$a(
 
 #' Launch shiny app
 #'
-#' @param allow_r logical. If set to FALSE, code chunks are converted into a 
+#' @param allow_r logical. If set to FALSE, code chunks are converted into a
 #'  verbatim code block during the conversion process.
 #' @param ... Not used yet.
 #'
@@ -20,20 +20,19 @@ link_juicedown <- tags$a(
 #' @export
 #'
 up <- function(allow_r = TRUE, ...) {
-  
   if (allow_r) {
     sample_html <- includeHTML(pkg_file("www", "samples.html"))
   } else {
     sample_html <- includeHTML(pkg_file("www", "samples_web.html"))
   }
-  
+
   ui <- page_navbar(
     title = "juicedown",
     theme = bs_theme(version = "5", preset = "bootstrap"),
     nav_panel("Converter", mdconvertUI("md2html"), value = 1L),
     nav_panel("Notes", page_fluid(sample_html), value = 2L),
     nav_spacer(),
-    nav_item(input_dark_mode()),
+    nav_item(input_dark_mode(id = "toggle-mode")),
     nav_menu(
       title = "Links",
       align = "right",
@@ -43,12 +42,17 @@ up <- function(allow_r = TRUE, ...) {
   )
 
   server <- function(input, output, session) {
-    #bs_themer()
+    # bs_themer()
+
+    session$userData$darkmode <- reactive(input[["toggle-mode"]])
     mdconvertServer("md2html", allow_r = allow_r)
-    
-    #stores setup
-    appid = "juicedownApp001"
-    shinyStorePlus::setupStorage(appId = appid,inputs = TRUE)
+
+    # stores setup
+    appid <- "juicedownApp001"
+    shinyStorePlus::setupStorage(
+      appId = appid,
+      inputs = TRUE
+    )
   }
 
   shinyApp(ui, server, options = list(launch.browser = TRUE))
