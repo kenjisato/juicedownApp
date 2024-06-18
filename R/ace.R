@@ -14,7 +14,7 @@ ace_ui <- function(id, value, ..., debug = FALSE) {
 }
 
 
-ace_server <- function(id, value) {
+ace_server <- function(id) {
   ns <- NS(id)
   moduleServer(id, function(input, output, session) {
     # Toggle light/dark modes
@@ -72,8 +72,9 @@ ace_server <- function(id, value) {
     o <- observe({
       if (ta2ace() > 1) o$destroy()
 
-      value <- if (is.null(input$mirror)) value else input$mirror
-      shinyAce::updateAceEditor(session, "editor", value)
+      if (!is.null(input$mirror)) {
+        shinyAce::updateAceEditor(session, "editor", input$mirror)
+      }
     }) |>
       bindEvent(
         input$mirror,

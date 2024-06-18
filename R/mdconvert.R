@@ -195,8 +195,8 @@ mdconvertServer <- function(id, allow_r = TRUE) {
     })
 
 
-    ace_server("md", value = installed_doc("text", "default"))
-    ace_server("css", value = installed_doc("css", "article"))
+    ace_server("md")
+    ace_server("css")
 
     # Initial Preview
     output$preview <- renderUI("Click on the convert button.")
