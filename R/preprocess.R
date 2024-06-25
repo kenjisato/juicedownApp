@@ -1,38 +1,65 @@
+process_command <- function(text) {
+  # Convert app commands into juicedown function calls
+  app_commands <- list(
+    YouTube = "includeYT",
+    Audio = "includeAudio"
+  )
 
-preprocess_md <- function(input, allow_r) {
-  md <- if (stringr::str_length(input$md) == 0) {
-    .sample_md
-  } else {
-    input$md
+  for (i in seq_along(app_commands)) {
+    name <- names(app_commands)[[i]]
+    juicedown_name <- app_commands[[i]]
+    from <- paste0("\\{%\\s*", name, '\\(((\'.*\')|(\".*\"))\\)\\s*%\\}')
+    to <- paste0("\n```{r}\n", juicedown_name, "(\\1)\n```\n")
+    text <- stringr::str_replace(text, from, to)
   }
-  
-  # Escape R chunk
-  if (!allow_r) {
-    md <- md |>
+  text
+}
+
+process_chunk <- function(text, kill_chunk) {
+  #
+  if (kill_chunk) {
+    text <- text |>
       stringr::str_replace_all("```\\{r.*\\}", "```r") |>
       stringr::str_replace_all("`r(.*)`", "`\\1`")
   }
-  
-  # Special Commands
-  md <- md |>
-    stringr::str_replace('\\{%\\s*YouTube\\(((\'.*\')|(\".*\"))\\)\\s*%\\}', 
-                         '\n```{r}\nincludeYT(\\1)\n```\n') |>
-    stringr::str_replace('\\{%\\s*Audio\\(((\'.*\')|(\".*\"))\\)\\s*%\\}', 
-                         '\n```{r}\nincludeAudio(\\1)\n```\n')
-  
-  # Options
-  option_lines <- character(0)
-  if (input$tweak_h2) {
-    option_lines <- c(option_lines, "juicedown::tweak_moodle_heading()")
+  text
+}
+
+process_options <- function(text, session, download) {
+  if (download) {
+    return(text)
   }
-  if (input$tweak_fn) {
-    option_lines <-
-      c(option_lines,
-        "juicedown::tweak_footnote_highlight()")
-  }
+
+  option_lines <- c(
+    if (session$input$tweak_h2) "juicedown::tweak_moodle_heading()" else NULL,
+    if (session$input$tweak_fn) "juicedown::tweak_footnote_highlight()" else NULL
+  )
+
   if (length(option_lines) > 0) {
     option_lines <- c("```{r}", option_lines, "```")
   }
-  md <- c(md, option_lines)
-  md
+  c(text, option_lines)
+}
+
+
+preprocess_md <- function(text, session, kill_chunk, download = FALSE) {
+  md <- if (stringr::str_length(text) == 0) {
+    installed_doc("text", "default")
+  } else {
+    text
+  }
+
+  # Process
+  md <- md |>
+    process_chunk(kill_chunk) |>
+    process_command() |>
+    process_options(session, download)
+}
+
+preprocess_css <- function(text) {
+  if (text == "") {
+    "/* empty */\n"
+  } else {
+    text
+  }
 }

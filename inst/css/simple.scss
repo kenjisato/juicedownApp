@@ -1,0 +1,12 @@
+/* simple.scss */
+$corp-color: #a25678;
+$base-font-color: inherit;
+$container-width: 660px;
+
+body {
+  max-width: $container-width;
+  font-family: sans-serif;
+  color: $base-font-color;
+  line-height: inherit;
+}
+
